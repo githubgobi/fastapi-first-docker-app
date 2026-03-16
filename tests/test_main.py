@@ -11,7 +11,7 @@ def reset_state():
     _reset_db()
 
 
-# ── GET /users ─────────────────────────────────────────────────────────────────
+# Tests for get all users in user_router endpoints 
 class TestGetUsers:
     def test_get_users_empty(self):
         resp = client.get("/users")
@@ -31,7 +31,7 @@ class TestGetUsers:
         assert {"id", "name", "email"} == set(users[0].keys())
 
 
-# ── GET /users/{id} ────────────────────────────────────────────────────────────
+# Tests for get user by ID in user_router endpoints with error handling for not found user
 class TestGetUser:
     def test_get_existing_user(self):
         created = client.post("/users", json={"name": "Alice", "email": "alice@example.com"}).json()
@@ -45,7 +45,7 @@ class TestGetUser:
         assert resp.json()["detail"] == "User not found"
 
 
-# ── POST /users ────────────────────────────────────────────────────────────────
+# Tests for create user in user_router endpoints with background task to send welcome email and error handling for duplicate email and missing fields
 class TestCreateUser:
     def test_create_user_success(self):
         payload = {"name": "Alice", "email": "alice@example.com"}

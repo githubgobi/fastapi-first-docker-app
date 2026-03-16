@@ -7,6 +7,7 @@ from exceptions.user_exceptions import UserNotFoundException
 
 class UserService:
 
+    # In a method create a user, check if email already exists and raise HTTPException if it does. Otherwise, create the user and return it.
     @staticmethod
     def create_user(user_data: dict):
 
@@ -27,6 +28,7 @@ class UserService:
         _counter += 1
         return _db[user_id]
 
+    # In a method get_user, check if user exists by ID and raise UserNotFoundException if it doesn't. Otherwise, return the user.
     @staticmethod
     def get_user(user_id: int):
         user = _db.get(user_id)
@@ -39,6 +41,7 @@ class UserService:
         )
         return user
 
+    # In a method get_all_users, return a list of all users in the database.
     @staticmethod
     def get_all_users():
 
