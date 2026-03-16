@@ -5,3 +5,4 @@ httpx
 python-json-logger
 pydantic[email]
 python-multipart
+fastapi-pagination

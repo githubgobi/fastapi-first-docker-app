@@ -7,11 +7,13 @@ from core.logger import logger
 from middleware.logging_middleware import RequestLoggingMiddleware
 # CORS Middleware
 from middleware.security_middleware import add_cors_middleware
+from fastapi_pagination import add_pagination
 
 # Routers
 from routers.user_router import router as user_router
 from routers.file_router import router as file_router
 from routers.test_router import router as test_router
+from routers.blog_router import router as blog_router
 
 app = FastAPI(title="FastAPI Docker Example", version="1.0.0")
 
@@ -32,4 +34,8 @@ app.add_exception_handler(
 app.include_router(user_router)
 app.include_router(file_router)
 app.include_router(test_router)
+app.include_router(blog_router)
 
+# Add pagination
+add_pagination(app)
+    

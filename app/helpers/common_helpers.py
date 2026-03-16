@@ -12,8 +12,8 @@ def common_parameters(limit: Optional[int] = None, offset: Optional[int] = None)
     return {"limit": limit or 10, "offset": offset or 0}
 
 class Pagination:
-    def __init__(self, limit: Optional[int] = None, offset: Optional[int] = None):
-        self.limit = limit or 20
+    def __init__(self, limit: Optional[int] = 2, offset: Optional[int] = 0):
+        self.limit = limit or 2
         self.offset = offset or 0
 
 def verify_token(x_token: str = Header(...)):
