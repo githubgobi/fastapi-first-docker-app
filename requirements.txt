@@ -6,3 +6,7 @@ python-json-logger
 pydantic[email]
 python-multipart
 fastapi-pagination
+sqlalchemy
+asyncpg
+psycopg2-binary
+python-dotenv
