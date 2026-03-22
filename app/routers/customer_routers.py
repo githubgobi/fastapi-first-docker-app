@@ -7,8 +7,8 @@ router = APIRouter(prefix="/customers")
 
 
 @router.post("/")
-async def add_customer(name: str, email: str, db: AsyncSession = Depends(get_db)):
-    return await create_customer(db, name, email)
+async def add_customer(name: str, email: str, password: str, db: AsyncSession = Depends(get_db)):
+    return await create_customer(db, name, email, password)
 
 
 @router.get("/")

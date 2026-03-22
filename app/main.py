@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.security import OAuth2PasswordBearer
 # Import custom exception handlers
 from core.exception_handlers import user_not_found_handler, validation_exception_handler
 from exceptions.user_exceptions import UserNotFoundException
@@ -15,6 +16,7 @@ from routers.user_router import router as user_router
 from routers.file_router import router as file_router
 from routers.blog_router import router as blog_router
 from routers.customer_routers import router as customer_router
+from routers.auth_router import router as auth_router
 
 from dotenv import load_dotenv
 load_dotenv()  
@@ -39,6 +41,9 @@ app.include_router(user_router)
 app.include_router(file_router)
 app.include_router(blog_router)
 app.include_router(customer_router)
+app.include_router(auth_router)
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 # Add pagination
 add_pagination(app)
@@ -47,5 +52,9 @@ add_pagination(app)
 async def startup_event():
     # Create database tables
     async with engine.begin() as conn:
+        # Drop all tables
+        await conn.run_sync(Base.metadata.drop_all)
+        logger.info("Database tables created successfully")
+        # Create all tables
         await conn.run_sync(Base.metadata.create_all)
     logger.info("Database tables created successfully")
