@@ -5,3 +5,11 @@ httpx
 python-json-logger
 pydantic[email]
 python-multipart
+fastapi-pagination
+sqlalchemy
+asyncpg
+psycopg2-binary
+python-dotenv
+passlib[bcrypt]==1.7.4
+bcrypt==4.0.1
+python-jose

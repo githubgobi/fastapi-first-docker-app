@@ -2,7 +2,7 @@ from fastapi import  HTTPException
 
 from db.db import _db
 from db.db import _counter
-from core import logger
+from core.logger import logger
 from exceptions.user_exceptions import UserNotFoundException
 
 class UserService:
